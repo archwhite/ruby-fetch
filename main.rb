@@ -3,9 +3,9 @@ require 'rest-client'
 
     url = 'https://jsonplaceholder.typicode.com/photos'
     fs = []
-    executor = Concurrent::CachedThreadPool.new
+    # executor = Concurrent::CachedThreadPool.new
     # executor = Concurrent::ThreadPoolExecutor.new
-    # executor = Concurrent::FixedThreadPool.new(10)
+    executor = Concurrent::FixedThreadPool.new(5)
     start_time = Time.now
     1000.times do 
         fs.push(Concurrent::Promise.execute opts = {:executor => executor} {
